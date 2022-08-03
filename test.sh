@@ -1,4 +1,7 @@
 currentBranch=`git branch --show-current`
 echo "printing ---->>>>> $currentBranch"
-
-git branch -r --list | sed 's/.*\///' | sed "/$currentBranch/d"
+branchlist=`git branch -r --list | sed 's/.*\///'`
+for i in "$branchlist"
+do git checkout "$i"
+    git branch --contains
+done
